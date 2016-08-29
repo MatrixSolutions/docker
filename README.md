@@ -40,11 +40,11 @@ In a new terminal, startup a console producer
 docker exec -it kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
 ```
 
-Now, anything you type into the producer should appear in the consumer.
+Now, anything you enter into the producer should appear in the consumer.
 
 In the box
 ---
-* **spotify/kafka**
+* **matrixsolutions/kafka**
 
   The docker image with both Kafka and Zookeeper. Built from the `kafka`
   directory.
@@ -52,9 +52,10 @@ In the box
 Public Builds
 ---
 
-### TODO Public builds
+    https://hub.docker.com/r/matrixsolutions/kafka/
 
 Build from Source
 ---
 
     docker build -t kafka .
+
