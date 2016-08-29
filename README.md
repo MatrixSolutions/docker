@@ -17,24 +17,30 @@ in the same container. This means:
 * No dependency on an external Zookeeper host, or linking to another container
 * Zookeeper and Kafka are configured to work together out of the box
 
-Run
+Run/Testing it out
 ---
 
+Run the docker image with the name "kafka"
 ```bash
-# TODO: Add run command once public
+docker run --name kafka -it matrixsolutions/kafka:0.10.0.0
 ```
 
+Create a `test` topic
 ```bash
-# TODO: Add topic creation command once public
+docker exec -it kafka /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 ```
 
+Startup a console consumer
 ```bash
-# TODO: Add producer command once public
+docker exec -it kafka /opt/kafka/bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
 ```
 
+In a new terminal, startup a console producer
 ```bash
-# TODO: Add consumer command once public
+docker exec -it kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
 ```
+
+Now, anything you type into the producer should appear in the consumer.
 
 In the box
 ---
