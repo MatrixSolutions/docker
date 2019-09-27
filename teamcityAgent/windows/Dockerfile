@@ -31,6 +31,7 @@ RUN Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Ne
 
 RUN choco install ruby --yes --version 2.6.4.1
 RUN gem install bundler
+RUN gem uninstall rake
 RUN gem install rake -v 0.9.2.2
 
 RUN choco install nvm --yes
