@@ -1,10 +1,6 @@
 FROM jetbrains/teamcity-agent
 
 # cypress/base ######################################################
-# This is required to solve the error with yarn "there are no scenarios; must have at least one"
-# https://medium.com/@andrewlinck/error-there-are-no-scenarios-yarn-8c36d96af3cb
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 RUN apt-get update && \
   apt-get install -y \
@@ -17,14 +13,12 @@ RUN apt-get update && \
     libasound2 \
     nodejs \
     npm \
-    xvfb \
-    yarn
+    xvfb
 
 # versions of local tools
 RUN node -v
 # NPM version should already be pretty new (> 6.4.0)
 RUN npm -v
-RUN yarn -v
 #####################################################################
 
 
