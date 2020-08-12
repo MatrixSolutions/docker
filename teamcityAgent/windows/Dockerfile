@@ -46,3 +46,5 @@ RUN setx /M PATH $($Env:PATH + ';C:\Program Files (x86)\Microsoft SDKs\F#\4.0\Fr
 RUN setx /M SdkToolsPath 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.7.2 Tools'
 
 RUN mkdir 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files'
+
+RUN choco install dotnetcore-sdk --yes
