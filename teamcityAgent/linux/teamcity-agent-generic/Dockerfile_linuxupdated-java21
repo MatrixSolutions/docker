@@ -1,0 +1,20 @@
+FROM buildimagesacr.azurecr.io/matrixsolutions/teamcity-agent-generic:linuxupdated
+
+# Set environment variables for non-interactive installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Set Java home and put on the front of the path
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+ENV PATH="$JAVA_HOME/bin:${PATH}"
+
+# Install Java 21
+RUN apt-get update && apt-get install -y --no-install-recommends openjdk-21-jdk
+
+# Set Java 21 as the default Java
+RUN update-alternatives --install "/usr/bin/java" "java" "$JAVA_HOME/bin/java" 20000 \
+    && update-alternatives --install "/usr/bin/javac" "javac" "$JAVA_HOME/bin/javac" 20000 \
+    && update-alternatives --set "java" "$JAVA_HOME/bin/java" \
+    && update-alternatives --set "javac" "$JAVA_HOME/bin/javac"
+
+# Remove Java 17
+RUN dpkg --purge --force-depends openjdk-17-jdk-headless openjdk-17-jre-headless || true
